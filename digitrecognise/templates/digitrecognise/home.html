@@ -1,0 +1,32 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="{% static 'digitrecognise/css/main.css' %}">
+    <title>HandWrittenDigitRecognization</title>
+  </head>
+  <body>
+    <div>
+      <div class="col-sm-6">
+        <div class="col-md-6">
+          <canvas class="myCanvas" id="canvas"></canvas>
+        </div>
+      </div>
+      <form action="" method="POST" id="form1">
+          {% csrf_token %}
+          <input type="hidden" name="canvasData" id="my_hidden">
+          <input type="submit" name="submit" value="submit" onclick="save()">
+      </form>
+      <button class="reset">Reset</button>
+    </div>
+    {% if prediction == 0 %}
+      <h1>{{prediction}}</h1>
+    {% endif %}
+    {% if prediction %}
+      <h1>{{prediction}}</h1>
+    {% endif %}
+    <script src="{% static 'digitrecognise/js/canvas.js' %}"></script>
+    <script src="{% static 'digitrecognise/js/saveCanvas.js' %}"></script>
+  </body>
+</html>
